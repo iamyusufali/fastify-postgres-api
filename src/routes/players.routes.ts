@@ -1,7 +1,7 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 
 import AppController from '../controllers/players.controllers';
-import AppSchemas from '../schemas';
+import AppSchemas from '../schemas/players.schemas';
 
 type TAppRoutesProvider = (
   fastify: FastifyInstance,
