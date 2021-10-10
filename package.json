@@ -1,0 +1,30 @@
+{
+  "name": "fastify-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yusufali19/fastify-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yusufali19/fastify-api/issues"
+  },
+  "homepage": "https://github.com/yusufali19/fastify-api#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "fastify": "^3.22.0",
+    "fastify-swagger": "^4.12.4",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
