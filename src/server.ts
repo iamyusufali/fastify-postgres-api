@@ -1,18 +1,17 @@
 import Fastify from 'fastify';
 import envVars from './envConfig';
+import appRoutes from './routes';
 
-const server = Fastify({ logger: true });
+const fastifyServer = Fastify({ logger: true });
 const { PORT } = envVars;
 
-server.get('/items', (req, reply) => {
-  reply.send({ test: 'Testa' });
-});
+fastifyServer.register(appRoutes);
 
 const start = async () => {
   try {
-    await server.listen(PORT);
+    await fastifyServer.listen(PORT);
   } catch (err) {
-    server.log.error(err);
+    fastifyServer.log.error(err);
     process.exit(1);
   }
 };
