@@ -1,16 +1,16 @@
-require('dotenv').config();
+import Fastify from 'fastify';
+import envVars from './envConfig';
 
-import { fastify } from 'fastify';
-
-const server = fastify({ logger: true });
+const server = Fastify({ logger: true });
+const { PORT } = envVars;
 
 server.get('/items', (req, reply) => {
-  reply.send({ test: 'hello' });
+  reply.send({ test: 'Testa' });
 });
 
 const start = async () => {
   try {
-    await server.listen(7000);
+    await server.listen(PORT);
   } catch (err) {
     server.log.error(err);
     process.exit(1);
