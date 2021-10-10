@@ -14,7 +14,6 @@ namespace AppSchemas {
       200: {
         type: 'object',
         properties: {
-          id: { type: 'string' },
           name: { type: 'string' },
           club: { type: 'string' },
         },
