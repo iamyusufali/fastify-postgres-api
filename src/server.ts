@@ -1,11 +1,16 @@
-import Fastify from 'fastify';
-import envVars from './envConfig';
-import appRoutes from './routes';
+import fastify from 'fastify';
+import fastifyPostgres from 'fastify-postgres';
 
-const fastifyServer = Fastify({ logger: true });
+import envVars from './envConfig';
+import playersRoutes from './routes/players.routes';
+
+const fastifyServer = fastify({ logger: true });
 const { PORT } = envVars;
 
-fastifyServer.register(appRoutes);
+fastifyServer.register(playersRoutes);
+
+const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
+fastifyServer.register(fastifyPostgres, { connectionString });
 
 const start = async () => {
   try {

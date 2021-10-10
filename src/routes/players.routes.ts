@@ -1,20 +1,20 @@
 import { FastifyInstance, RouteOptions } from 'fastify';
 
-import AppController from '../controllers';
+import AppController from '../controllers/players.controllers';
 import AppSchemas from '../schemas';
 
 type TAppRoutesProvider = (
   fastify: FastifyInstance,
   options: RouteOptions,
-  done: any
+  done: Function
 ) => void;
 
 const appRoutesProvider: TAppRoutesProvider = (fastify, options, done) => {
   fastify.route({
-    method: 'GET',
-    url: '/items',
-    schema: AppSchemas.GetItems,
-    handler: AppController.getItems,
+    method: 'POST',
+    url: '/player',
+    schema: AppSchemas.AddPlayer,
+    handler: AppController(fastify).addPlayer,
   });
 
   done();
