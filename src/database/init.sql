@@ -1,0 +1,5 @@
+CREATE TABLE players (
+  ID SERIAL PRIMARY KEY,
+  name VARCHAR(30),
+  club VARCHAR(30)
+);
