@@ -7,6 +7,8 @@ import PlayerRoutesProvider from './routes/players.routes';
 
 interface IEnvVars {
   SERVER_PORT: string | number;
+  NODE_ENV: string;
+  DATABASE_URL: string;
 }
 
 class App {
@@ -26,6 +28,8 @@ class App {
 
     this.envVars = {
       SERVER_PORT: process.env.PORT as string | number,
+      NODE_ENV: process.env.NODE_ENV as string,
+      DATABASE_URL: process.env.DATABASE_URL as string,
     };
 
     return Promise.resolve('Loaded Environment variables.');
@@ -33,7 +37,12 @@ class App {
 
   private async connectToPostgres() {
     const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
-    await this.fastifyInstance.register(fastifyPostgres, { connectionString });
+    await this.fastifyInstance.register(fastifyPostgres, {
+      connectionString:
+        this.envVars?.NODE_ENV === 'production'
+          ? this.envVars?.DATABASE_URL
+          : connectionString,
+    });
   }
 
   private async registerSwagger() {
