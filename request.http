@@ -1,2 +1,2 @@
 ### GET all items
-GET http://localhost:5000/items HTTP/1.1
+GET http://localhost:5000/players HTTP/1.1
