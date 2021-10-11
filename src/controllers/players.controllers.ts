@@ -25,6 +25,17 @@ namespace PlayerControllers {
       reply.send(result.rows);
     });
   };
+
+  export const getPlayerById: THandler = (request, reply) => {
+    const { id } = request.params as any;
+    const dbQuery = 'SELECT * FROM players WHERE id = $1';
+
+    fastifyInstance.pg.query(dbQuery, [id], (err, result) => {
+      if (err) throw Error();
+
+      reply.send(result.rows);
+    });
+  };
 }
 
 export default PlayerControllers;

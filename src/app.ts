@@ -1,5 +1,4 @@
 import fastify, { FastifyInstance } from 'fastify';
-// import dotenv from 'dotenv';
 import fastifyPostgres from 'fastify-postgres';
 import fastifySwagger from 'fastify-swagger';
 
@@ -13,7 +12,6 @@ interface IEnvVars {
 
 class App {
   public fastifyInstance: FastifyInstance;
-  public envVars: IEnvVars | undefined;
 
   constructor() {
     this.fastifyInstance = fastify({ logger: true });

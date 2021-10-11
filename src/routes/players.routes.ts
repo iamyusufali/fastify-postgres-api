@@ -17,9 +17,15 @@ const allRoutes: RouteOptions[] = [
     handler: PlayerControllers.getPlayers,
   },
   {
+    method: 'GET',
+    url: '/players/:id',
+    schema: PlayerSchemas.GetPlayers,
+    handler: PlayerControllers.getPlayerById,
+  },
+  {
     method: 'POST',
     url: '/player',
-    schema: PlayerSchemas.AddPlayer,
+    schema: PlayerSchemas.GetPlayerById,
     handler: PlayerControllers.addPlayer,
   },
 ];

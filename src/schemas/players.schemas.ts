@@ -1,5 +1,14 @@
 import { FastifySchema } from 'fastify';
 
+const Player = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    name: { type: 'string' },
+    club: { type: 'string' },
+  },
+};
+
 namespace PlayerSchemas {
   export const AddPlayer: FastifySchema = {
     body: {
@@ -10,28 +19,17 @@ namespace PlayerSchemas {
       },
       required: ['name', 'club'],
     },
-    response: {
-      200: {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          club: { type: 'string' },
-        },
-      },
-    },
+    response: { 200: Player },
   };
 
   export const GetPlayers: FastifySchema = {
     response: {
-      200: {
-        type: 'array',
-        properties: {
-          id: { type: 'string' },
-          name: { type: 'string' },
-          club: { type: 'string' },
-        },
-      },
+      200: { type: 'array', items: Player },
     },
+  };
+
+  export const GetPlayerById: FastifySchema = {
+    response: { 200: Player },
   };
 }
 
