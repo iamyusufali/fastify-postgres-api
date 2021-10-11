@@ -31,6 +31,10 @@ namespace PlayerSchemas {
   export const GetPlayerById: FastifySchema = {
     response: { 200: Player },
   };
+
+  export const UpdatePlayer: FastifySchema = {
+    response: { 200: { type: 'string' } },
+  };
 }
 
 export default PlayerSchemas;

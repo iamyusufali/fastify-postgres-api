@@ -28,6 +28,18 @@ const allRoutes: RouteOptions[] = [
     schema: PlayerSchemas.GetPlayerById,
     handler: PlayerControllers.addPlayer,
   },
+  {
+    method: 'PUT',
+    url: '/player/:id',
+    schema: PlayerSchemas.UpdatePlayer,
+    handler: PlayerControllers.updatePlayer,
+  },
+  {
+    method: 'DELETE',
+    url: '/player/:id',
+    schema: PlayerSchemas.GetPlayerById,
+    handler: PlayerControllers.addPlayer,
+  },
 ];
 
 const PlayerRoutesProvider: TProvider = (fastify, _, done) => {

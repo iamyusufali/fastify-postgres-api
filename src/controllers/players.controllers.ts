@@ -36,6 +36,19 @@ namespace PlayerControllers {
       reply.send(result.rows);
     });
   };
+
+  export const updatePlayer: THandler = (request, reply) => {
+    const { id } = request.params as any;
+    const { name, club } = request.body as any;
+
+    const dbQuery = 'UPDATE players SET name = $1, club = $2 WHERE id = $3';
+
+    fastifyInstance.pg.query(dbQuery, [name, club, id], (err) => {
+      if (err) throw Error();
+
+      reply.send('Player details updated successfully.');
+    });
+  };
 }
 
 export default PlayerControllers;
