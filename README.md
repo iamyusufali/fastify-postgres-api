@@ -1,4 +1,4 @@
-# fastify-postgres-api
+# Fastify Postgres API
 
 An application built using fastify, typescript and postgres which provides access to football players data.
 
@@ -16,3 +16,11 @@ npm run dev
 ## Documentation
 
 > Visit localhost:${PORT}/docs to view docs for all endpoints.
+
+## REST Client
+
+> Use request.http to make requestes to various endpoints.
+
+You can install Rest Client extension for VSCode from [here](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+> If you have any queries you can reach out to me at yusufali9398@gmail.com.
