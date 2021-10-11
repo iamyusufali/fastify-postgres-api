@@ -6,7 +6,7 @@ const SERVER_PORT = Application.envVars?.SERVER_PORT || 5000;
 
 (async () => {
   try {
-    await Application.initializeApp();
+    await Application.initialize();
     await Application.fastifyInstance.listen(SERVER_PORT);
   } catch (err) {
     Application.fastifyInstance.log.error(err);

@@ -19,8 +19,10 @@ npm run dev
 
 ## REST Client
 
-> Use request.http to make requestes to various endpoints.
+> Use request.http to make requests to various endpoints.
 
 You can install Rest Client extension for VSCode from [here](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+
+## For Queries
 
 > If you have any queries you can reach out to me at yusufali9398@gmail.com.

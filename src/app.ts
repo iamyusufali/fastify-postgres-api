@@ -44,7 +44,7 @@ class App {
     await this.fastifyInstance.register(PlayerRoutesProvider);
   }
 
-  public async initializeApp() {
+  public async initialize() {
     try {
       await this.connectToPostgres();
       await this.registerSwagger();
