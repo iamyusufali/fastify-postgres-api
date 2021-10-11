@@ -4,7 +4,7 @@ import fastifyPostgres from 'fastify-postgres';
 import envVars from './envConfig';
 import playersRoutes from './routes/players.routes';
 
-export const fastifyServer = fastify({ logger: true });
+const fastifyServer = fastify({ logger: true });
 const { PORT } = envVars;
 
 fastifyServer.register(playersRoutes);
@@ -22,3 +22,5 @@ const start = async () => {
 };
 
 start();
+
+export default fastifyServer;

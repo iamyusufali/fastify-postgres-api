@@ -1,6 +1,6 @@
 import { FastifySchema } from 'fastify';
 
-namespace AppSchemas {
+namespace PlayerSchemas {
   export const AddPlayer: FastifySchema = {
     body: {
       type: 'object',
@@ -20,6 +20,19 @@ namespace AppSchemas {
       },
     },
   };
+
+  export const GetPlayers: FastifySchema = {
+    response: {
+      200: {
+        type: 'array',
+        properties: {
+          id: { type: 'string' },
+          name: { type: 'string' },
+          club: { type: 'string' },
+        },
+      },
+    },
+  };
 }
 
-export default AppSchemas;
+export default PlayerSchemas;
