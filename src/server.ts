@@ -1,27 +1,17 @@
-import fastify from 'fastify';
-import fastifyPostgres from 'fastify-postgres';
-import fastifySwagger from 'fastify-swagger';
+import App from './app';
 
-import envVars from './envConfig';
-import PlayerRoutesProvider from './routes/players.routes';
+const Application = new App();
+const fastifyInstance = Application.fastifyInstance;
+const SERVER_PORT = Application.envVars?.SERVER_PORT || 5000;
 
-const fastifyServer = fastify({ logger: true });
-const { PORT } = envVars;
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
-
-fastifyServer.register(fastifyPostgres, { connectionString });
-fastifyServer.register(fastifySwagger, { exposeRoute: true });
-fastifyServer.register(PlayerRoutesProvider);
-
-const start = async () => {
+(async () => {
   try {
-    await fastifyServer.listen(PORT);
+    await Application.initializeApp();
+    await Application.fastifyInstance.listen(SERVER_PORT);
   } catch (err) {
-    fastifyServer.log.error(err);
+    Application.fastifyInstance.log.error(err);
     process.exit(1);
   }
-};
+})();
 
-start();
-
-export default fastifyServer;
+export default fastifyInstance;

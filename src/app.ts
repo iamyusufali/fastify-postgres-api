@@ -1,0 +1,59 @@
+import fastify, { FastifyInstance } from 'fastify';
+import dotenv from 'dotenv';
+import fastifyPostgres from 'fastify-postgres';
+import fastifySwagger from 'fastify-swagger';
+
+import PlayerRoutesProvider from './routes/players.routes';
+
+interface IEnvVars {
+  SERVER_PORT: string | number;
+}
+
+class App {
+  public fastifyInstance: FastifyInstance;
+  public envVars: IEnvVars | undefined;
+
+  constructor() {
+    this.fastifyInstance = fastify({ logger: true });
+
+    this.loadEnvVariables();
+  }
+
+  private async loadEnvVariables() {
+    const result = dotenv.config();
+
+    if (result.error) throw new Error('Unable to parse Environment variables.');
+
+    this.envVars = {
+      SERVER_PORT: process.env.PORT as string | number,
+    };
+
+    return Promise.resolve('Loaded Environment variables.');
+  }
+
+  private async connectToPostgres() {
+    const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
+    await this.fastifyInstance.register(fastifyPostgres, { connectionString });
+  }
+
+  private async registerSwagger() {
+    await this.fastifyInstance.register(fastifySwagger, { exposeRoute: true });
+  }
+
+  private async registerAllRoutes() {
+    await this.fastifyInstance.register(PlayerRoutesProvider);
+  }
+
+  public async initializeApp() {
+    try {
+      await this.connectToPostgres();
+      await this.registerSwagger();
+      await this.registerAllRoutes();
+    } catch (err) {
+      console.log(err);
+      throw new Error('Unable to initialize application.');
+    }
+  }
+}
+
+export default App;
