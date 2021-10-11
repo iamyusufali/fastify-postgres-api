@@ -1,8 +1,12 @@
+import dotenv from 'dotenv';
+
 import App from './app';
+
+dotenv.config();
 
 const Application = new App();
 const fastifyInstance = Application.fastifyInstance;
-const SERVER_PORT = Application.envVars?.SERVER_PORT || 5000;
+const SERVER_PORT = process.env.PORT || 5000;
 
 (async () => {
   try {
