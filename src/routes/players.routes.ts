@@ -37,8 +37,8 @@ const allRoutes: RouteOptions[] = [
   {
     method: 'DELETE',
     url: '/player/:id',
-    schema: PlayerSchemas.GetPlayerById,
-    handler: PlayerControllers.addPlayer,
+    schema: PlayerSchemas.DeletePlayer,
+    handler: PlayerControllers.deletePlayer,
   },
 ];
 

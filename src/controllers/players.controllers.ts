@@ -49,6 +49,18 @@ namespace PlayerControllers {
       reply.send('Player details updated successfully.');
     });
   };
+
+  export const deletePlayer: THandler = (request, reply) => {
+    const { id } = request.params as any;
+
+    const dbQuery = 'DELETE FROM players WHERE id = $1';
+
+    fastifyInstance.pg.query(dbQuery, [id], (err) => {
+      if (err) throw Error();
+
+      reply.send(`Player with ID: ${id} deleted successfully.`);
+    });
+  };
 }
 
 export default PlayerControllers;

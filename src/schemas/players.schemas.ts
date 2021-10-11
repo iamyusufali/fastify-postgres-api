@@ -35,6 +35,10 @@ namespace PlayerSchemas {
   export const UpdatePlayer: FastifySchema = {
     response: { 200: { type: 'string' } },
   };
+
+  export const DeletePlayer: FastifySchema = {
+    response: { 200: { type: 'string' } },
+  };
 }
 
 export default PlayerSchemas;

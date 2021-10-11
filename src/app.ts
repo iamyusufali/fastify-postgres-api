@@ -4,12 +4,6 @@ import fastifySwagger from 'fastify-swagger';
 
 import PlayerRoutesProvider from './routes/players.routes';
 
-interface IEnvVars {
-  SERVER_PORT: string | number;
-  NODE_ENV: string;
-  DATABASE_URL: string;
-}
-
 class App {
   public fastifyInstance: FastifyInstance;
 
