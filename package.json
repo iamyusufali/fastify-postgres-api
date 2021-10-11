@@ -4,9 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "node build/server.js",
     "compile": "tsc && node build/server.js",
-    "dev": "nodemon -e ts --exec \"npm run compile\"",
-    "start": "node build/server.js"
+    "dev": "nodemon -e ts --exec \"npm run compile\""
   },
   "repository": {
     "type": "git",
